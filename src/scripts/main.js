@@ -11,7 +11,7 @@ function showNotification(message, type) {
 
 const firstPromise = new Promise((resolve, reject) => {
   function onDocumentClick(e) {
-    if (event.button === 0) {
+    if (e.button === 0) {
       clearTimeout(timerId);
       resolve('First promise was resolved');
       document.removeEventListener('click', onDocumentClick);
@@ -36,7 +36,7 @@ firstPromise
 
 const secondPromise = new Promise((resolve, reject) => {
   function handleLeftClick(e) {
-    if (event.button === 0) {
+    if (e.button === 0) {
       resolve('Second promise was resolved');
       document.removeEventListener('click', handleLeftClick);
       document.removeEventListener('contextmenu', handleRightClick);
@@ -44,7 +44,7 @@ const secondPromise = new Promise((resolve, reject) => {
   }
 
   function handleRightClick(e) {
-    event.preventDefault();
+    e.preventDefault();
     resolve('Second promise was resolved');
     document.removeEventListener('click', handleLeftClick);
     document.removeEventListener('contextmenu', handleRightClick);
@@ -63,7 +63,7 @@ const thirdPromise = new Promise((resolve, reject) => {
   let rightClicked = false;
 
   function checkLeftClick(e) {
-    if (event.button === 0) {
+    if (e.button === 0) {
       leftClicked = true;
 
       if (leftClicked && rightClicked) {
@@ -75,7 +75,7 @@ const thirdPromise = new Promise((resolve, reject) => {
   }
 
   function checkRightClick(e) {
-    event.preventDefault();
+    e.preventDefault();
     rightClicked = true;
 
     if (leftClicked && rightClicked) {
